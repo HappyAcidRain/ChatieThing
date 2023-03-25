@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>300</width>
+    <height>447</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>999</width>
+    <height>9999</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI Light</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+	color: #F6F6F6;
+	background-color: #6B6B6B;
+}
+
+QLabel {
+	color: #F6F6F6;
+	background-color: #7C7C7C;
+	border: 1px solid #535EDF;
+	border-radius: 15px;
+}
+
+QTextEdit{
+	color: #F6F6F6;
+	background-color: #7C7C7C;
+	border: 1px solid #2C65A2;
+	border-radius: 10px;
+}
+
+QPushButton {
+	color: black;
+	background-color: #4487CF;
+	border: 1px solid #2C65A2;
+	border-radius: 10px;
+}
+
+QPushButton:hover {
+	color: black;
+	background-color: #4C9CF2;
+	border: 1px solid #2C65A2;
+	border-radius: 10px;
+}
+
+QProgressBar {
+	color: #F6F6F6;
+	background-color: #7C7C7C;
+	border: 1px solid #2C65A2;
+	border-radius: 10px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTextEdit" name="te_userEnter">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="cursorWidth">
+     <number>1</number>
+    </property>
+    <property name="placeholderText">
+     <string>Введите вопрос...</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_commit">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>390</y>
+      <width>41</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>assets/icons8-paper-plane-100.png</normaloff>assets/icons8-paper-plane-100.png</iconset>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="te_gptAnswer">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>280</width>
+      <height>370</height>
+     </rect>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="overwriteMode">
+     <bool>true</bool>
+    </property>
+    <property name="cursorWidth">
+     <number>0</number>
+    </property>
+    <property name="placeholderText">
+     <string>Здесь будет овтет</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="pb_progress">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>450</y>
+      <width>281</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>2</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="textVisible">
+     <bool>false</bool>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <property name="invertedAppearance">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
