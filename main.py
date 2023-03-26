@@ -1,6 +1,6 @@
 # база
 import sys
-from PyQt6 import QtWidgets 
+from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QDialog, QApplication, QGraphicsDropShadowEffect
 
 # окно
@@ -8,10 +8,8 @@ import MainWin
 
 # чат GPT
 import openai
-openai.api_key = "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"
 
-# иное 
-import time
+openai.api_key = "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"
 
 
 class MainWindow(QtWidgets.QMainWindow, MainWin.Ui_MainWindow, QDialog):
@@ -38,18 +36,16 @@ class MainWindow(QtWidgets.QMainWindow, MainWin.Ui_MainWindow, QDialog):
 
         # кнопушка 
         self.btn_commit.clicked.connect(self.get_answer)
-        
 
     def get_answer(self):
-
         # обновляем прогрессБар
-        self.pb_progress.setRange(0,2)
+        self.pb_progress.setRange(0, 2)
         self.pb_progress.setValue(1)
 
         # генерируем ответ
         completion = openai.Completion.create(
             model="text-davinci-003",
-            prompt= str(self.te_userEnter.toPlainText()),
+            prompt=str(self.te_userEnter.toPlainText()),
             max_tokens=2048,
             temperature=0.3
         )
