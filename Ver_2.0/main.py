@@ -12,6 +12,7 @@ import sqlite3
 
 
 class MainWindow(QtWidgets.QMainWindow, LoginTest.Ui_MainWindow, QDialog):
+    # попробуц сюда впихнуть переменную times
 
     def __init__(self):
         super(MainWindow, self).__init__()
