@@ -5,36 +5,35 @@ from PyQt6.QtWidgets import QDialog, QApplication, QGraphicsDropShadowEffect
 from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QPoint
 
 # окно
-import LoginTest
+import mainUI
 
 # прочее
 import sqlite3
-import time
 
-class MainWindow(QtWidgets.QMainWindow, LoginTest.Ui_MainWindow, QDialog):
+class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QDialog):
 
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
 
         # стартовые позиции эллементов (an_wellcome)
-        self.le_password.move(70, 160)
-        self.btn_commit.move(70, 210)
+        self.le_username.move(70, 220)
+        self.btn_commitLogin.move(70, 220)
 
         # настройка анимации (an_wellcome)
-        self.an1_password = QPropertyAnimation(self.le_password, b"pos")
-        self.an1_commit = QPropertyAnimation(self.btn_commit, b"pos")
+        self.an1_username = QPropertyAnimation(self.le_username, b"pos")
+        self.an1_commitLogin = QPropertyAnimation(self.btn_commitLogin, b"pos")
 
         # настройка анимации (an_shake)
         self.an_password = QPropertyAnimation(self.le_password, b"pos")
         self.an_username = QPropertyAnimation(self.le_username, b"pos")
-        self.an_commit = QPropertyAnimation(self.btn_commit, b"pos")
+        self.an_commitLogin = QPropertyAnimation(self.btn_commitLogin, b"pos")
 
         # привязка анимации
         self.le_username.textEdited.connect(self.an_wellcome)
 
         # кнопушка 
-        self.btn_commit.clicked.connect(self.login)
+        self.btn_commitLogin.clicked.connect(self.login)
 
     def login(self):
 
@@ -55,6 +54,9 @@ class MainWindow(QtWidgets.QMainWindow, LoginTest.Ui_MainWindow, QDialog):
             # закрываем БД
             connect.close()
 
+            # открываем чат
+            self.an_chat()
+
         except sqlite3.IntegrityError:
             # чистим поля
             self.le_username.clear()
@@ -74,43 +76,49 @@ class MainWindow(QtWidgets.QMainWindow, LoginTest.Ui_MainWindow, QDialog):
     def an_wellcome(self):
 
         # анимация кнопки
-        self.an1_commit.setEasingCurve(QEasingCurve.Type.InOutCubic)
-        self.an1_commit.setEndValue(QPoint(70, 260))
-        self.an1_commit.setDuration(700)
-        self.an1_commit.start()
+        self.an1_commitLogin.setEasingCurve(QEasingCurve.Type.InOutCubic)
+        self.an1_commitLogin.setEndValue(QPoint(70, 270))
+        self.an1_commitLogin.setDuration(700)
+        self.an1_commitLogin.start()
 
         # анимация текстового поля
-        self.an1_password.setEasingCurve(QEasingCurve.Type.InOutCubic)
-        self.an1_password.setEndValue(QPoint(70, 210))
-        self.an1_password.setDuration(700)
-        self.an1_password.start()
+        self.an1_username.setEasingCurve(QEasingCurve.Type.InOutCubic)
+        self.an1_username.setEndValue(QPoint(70, 170))
+        self.an1_username.setDuration(700)
+        self.an1_username.start()
 
     # анимация тряски
     def an_shake(self):
 
         # анмиация кнопки 
-        self.an_commit.setEasingCurve(QEasingCurve.Type.InOutCubic)
-        self.an_commit.setKeyValueAt(0.1, QPoint(50, 260))
-        self.an_commit.setKeyValueAt(0.3, QPoint(90, 260))
-        self.an_commit.setEndValue(QPoint(70, 260))
-        self.an_commit.setDuration(400)
-        self.an_commit.start()
+        self.an_commitLogin.setEasingCurve(QEasingCurve.Type.InOutCubic)
+        self.an_commitLogin.setKeyValueAt(0.1, QPoint(50, 270))
+        self.an_commitLogin.setKeyValueAt(0.3, QPoint(90, 270))
+        self.an_commitLogin.setEndValue(QPoint(70, 270))
+        self.an_commitLogin.setDuration(400)
+        self.an_commitLogin.start()
 
         # анимация поля пароля
         self.an_password.setEasingCurve(QEasingCurve.Type.InOutCubic)
-        self.an_password.setKeyValueAt(0.1, QPoint(50, 210))
-        self.an_password.setKeyValueAt(0.3, QPoint(90, 210))
-        self.an_password.setEndValue(QPoint(70, 210))
+        self.an_password.setKeyValueAt(0.1, QPoint(50, 220))
+        self.an_password.setKeyValueAt(0.3, QPoint(90, 220))
+        self.an_password.setEndValue(QPoint(70, 220))
         self.an_password.setDuration(400)
         self.an_password.start()
 
         # анимация поля имени
         self.an_username.setEasingCurve(QEasingCurve.Type.InOutCubic)
-        self.an_username.setKeyValueAt(0.1, QPoint(50, 160))
-        self.an_username.setKeyValueAt(0.3, QPoint(90, 160))
-        self.an_username.setEndValue(QPoint(70, 160))
+        self.an_username.setKeyValueAt(0.1, QPoint(50, 170))
+        self.an_username.setKeyValueAt(0.3, QPoint(90, 170))
+        self.an_username.setEndValue(QPoint(70, 170))
         self.an_username.setDuration(400)
         self.an_username.start()
+
+    # анимация появления чата
+    def an_chat(self):
+        pass 
+
+        # TODO: сделай аниацию "лесенкой"
 
         
 if __name__ == '__main__':

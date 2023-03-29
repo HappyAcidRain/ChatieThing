@@ -1,39 +1,41 @@
 QMainWindow {
-	color: #F6F6F6;
-	background-color: #6B6B6B;
+	background-color: rgb(25, 25, 25);
+	color: rgb(130, 130, 130);
+
+	border-radius: 5px;
 }
 
-QLabel {
-	color: #F6F6F6;
-	background-color: #7C7C7C;
-	border: 1px solid #535EDF;
-	border-radius: 15px;
+QLineEdit{
+	background-color: rgb(40, 40, 40);
+	color: rgb(130, 130, 130);
+
+	border-radius: 5px;
 }
 
 QTextEdit{
-	color: #F6F6F6;
-	background-color: #7C7C7C;
-	border: 1px solid #2C65A2;
-	border-radius: 10px;
+	background-color: rgb(40, 40, 40);
+	color: rgb(130, 130, 130);
+
+	border-radius: 5px;
 }
 
-QPushButton {
-	color: black;
-	background-color: #4487CF;
-	border: 1px solid #2C65A2;
-	border-radius: 10px;
+QTextBrowser{
+	background-color: rgb(40, 40, 40);
+	color: rgb(130, 130, 130);
+
+	border-radius: 5px;
 }
 
-QPushButton:hover {
-	color: black;
-	background-color: #4C9CF2;
-	border: 1px solid #2C65A2;
-	border-radius: 10px;
+QPushButton{
+	background-color: rgb(40, 40, 40);
+	color: rgb(130, 130, 130);
+
+	border-radius: 5px;
 }
 
-QProgressBar {
-	color: #F6F6F6;
-	background-color: #7C7C7C;
-	border: 1px solid #2C65A2;
-	border-radius: 10px;
+QPushButton:pressed {
+	background-color: rgb(130, 130, 130);
+	color: rgb(130, 130, 130);
+
+	border-radius: 5px;
 }
