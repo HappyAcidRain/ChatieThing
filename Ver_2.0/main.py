@@ -9,6 +9,7 @@ import mainUI
 
 # прочее
 import sqlite3
+import openai
 
 class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QtCore.QTimer, QDialog):
 
@@ -43,6 +44,7 @@ class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QtCore.QTimer, QDi
 
         # кнопушка 
         self.btn_commitLogin.clicked.connect(self.login)
+        self.btn_commitQue.clicked.connect(self.chatGPT)
 
     def login(self):
 
@@ -167,7 +169,23 @@ class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QtCore.QTimer, QDi
         self.anC_commitQue.setDuration(700)
         self.delay.singleShot(100, self.anC_commitQue.start)
 
-        
+    # получаем ответ 
+    def chatGPT(self):
+
+        openai.api_key = "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"
+
+        # генерируем ответ
+        completion = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=str(self.te_question.toPlainText()),
+            max_tokens=2048,
+            temperature=0.3
+        )
+
+        # выводим овтет
+        self.tb_answer.setPlainText(str(completion.choices[0].text))
+
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     m = MainWindow()
