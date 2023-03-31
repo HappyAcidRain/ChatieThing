@@ -4,8 +4,9 @@ from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtWidgets import QDialog, QApplication, QGraphicsDropShadowEffect
 from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QPoint, QTimer
 
-# окно
+# окна
 import mainUI
+import regUI
 
 # прочее
 import sqlite3
@@ -43,10 +44,41 @@ class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QtCore.QTimer, QDi
         self.le_username.textEdited.connect(self.an_wellcome)
 
         # кнопушка 
-        self.btn_commitLogin.clicked.connect(self.login)
+        self.btn_commitLogin.clicked.connect(self.login) # заменить на login
         self.btn_commitQue.clicked.connect(self.chatGPT)
 
     def login(self):
+
+        # подключение к БД
+        connect = sqlite3.connect("loginData.db")
+        cursor = connect.cursor()
+
+        # получение данных 
+        usernameFind = str(self.le_username.text())
+        passwordFind = str(self.le_password.text())
+
+        try:
+            # ищем пользователя в БД
+            cursor.execute(f"SELECT key FROM data WHERE username LIKE '%{usernameFind}%' ")
+            DB_key = cursor.fetchone()
+
+            # конвертация DB_key(typle) в str
+            DB_key_str=""
+            for i in DB_key:
+                DB_key_str+=str(i)
+
+            # записываем ключ
+            openai.api_key = DB_key_str
+
+            # открываем чат
+            self.an_chat()
+
+        except TypeError:
+
+            # показываем ошибку
+            self.an_shake()
+
+    def reg(self):      # TODO: реворк
 
         # подключение к БД
         connect = sqlite3.connect("loginData.db")
@@ -69,18 +101,10 @@ class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QtCore.QTimer, QDi
             self.an_chat()
 
         except sqlite3.IntegrityError:
-            # чистим поля
-            self.le_username.clear()
-            self.le_password.clear()
-
-            # ввыодим в Placeholder'ы сообщения 
-            self.le_username.setPlaceholderText("Данный пользователь уже есть")
-            self.le_password.setPlaceholderText("Попробуйте еще раз")
-
             # закрываем БД
             connect.close()
 
-            # анимация тряски
+            # показвываем ошибку
             self.an_shake()
 
     # анимация "раздвижения" кнопок 
@@ -100,6 +124,14 @@ class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QtCore.QTimer, QDi
 
     # анимация тряски
     def an_shake(self):
+
+        # чистим поля
+        self.le_username.clear()
+        self.le_password.clear()
+
+        # ввыодим в Placeholder'ы сообщения 
+        self.le_username.setPlaceholderText("Данный пользователь уже есть")
+        self.le_password.setPlaceholderText("Попробуйте еще раз")
 
         # анмиация кнопки 
         self.anS_commitLogin.setEasingCurve(QEasingCurve.Type.InOutCubic)
@@ -168,12 +200,10 @@ class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QtCore.QTimer, QDi
         self.anC_commitQue.setEndValue(QPoint(320, 420))
         self.anC_commitQue.setDuration(700)
         self.delay.singleShot(100, self.anC_commitQue.start)
-
+    
     # получаем ответ 
     def chatGPT(self):
-
-        openai.api_key = "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"
-
+        """
         # генерируем ответ
         completion = openai.Completion.create(
             model="text-davinci-003",
@@ -183,7 +213,18 @@ class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QtCore.QTimer, QDi
         )
 
         # выводим овтет
-        self.tb_answer.setPlainText(str(completion.choices[0].text))
+        self.tb_answer.setPlainText(str(completion.choices[0].text)) """
+
+        pass
+
+class RegWindow(QtWidgets.QMainWindow, regUI.Ui_MainWindow, QtCore.QTimer, QDialog):
+
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        self.setupUi(self)
+
+    def reg(self):
+        pass
 
 
 if __name__ == '__main__':
