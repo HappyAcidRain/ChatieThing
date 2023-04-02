@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>370</width>
+    <width>740</width>
     <height>390</height>
    </rect>
   </property>
@@ -56,6 +56,12 @@ QPushButton:pressed {
       <height>40</height>
      </rect>
     </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
     <property name="placeholderText">
      <string>API-ключ</string>
     </property>
@@ -89,7 +95,7 @@ QPushButton:pressed {
      <string>Пароль</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="le_username_2">
+   <widget class="QLineEdit" name="le_username">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -102,17 +108,52 @@ QPushButton:pressed {
      <string>Имя пользователя</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lbl_help">
     <property name="geometry">
      <rect>
       <x>69</x>
       <y>310</y>
-      <width>241</width>
+      <width>240</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>как получить API-ключ</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_pass">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>180</y>
+      <width>240</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Теперь вы можете войти</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_closeWin">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>350</y>
+      <width>240</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>закройте это окно</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
