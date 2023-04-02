@@ -176,6 +176,20 @@ QPushButton:pressed {
      <string>Здесь будет ответ...</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btn_reg">
+    <property name="geometry">
+     <rect>
+      <x>89</x>
+      <y>450</y>
+      <width>210</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>регистрация</string>
+    </property>
+   </widget>
+   <zorder>btn_reg</zorder>
    <zorder>btn_commitLogin</zorder>
    <zorder>le_password</zorder>
    <zorder>te_question</zorder>
