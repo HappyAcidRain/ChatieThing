@@ -93,7 +93,7 @@ class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QtCore.QTimer, QDi
 
     # получаем ответ 
     def chatGPT(self):
-        """
+        
         # генерируем ответ
         completion = openai.Completion.create(
             model="text-davinci-003",
@@ -103,9 +103,7 @@ class MainWindow(QtWidgets.QMainWindow, mainUI.Ui_MainWindow, QtCore.QTimer, QDi
         )
 
         # выводим овтет
-        self.tb_answer.setPlainText(str(completion.choices[0].text)) """
-
-        pass
+        self.tb_answer.setPlainText(str(completion.choices[0].text))
 
     # анимация "раздвижения" кнопок 
     def an_wellcome(self):
